@@ -21,11 +21,11 @@
 
 # Tasks
 
-- [] A user should see some content on the about us page.
-- [] A user should be able to navigate to a contact us page.
-- [] The login/register button should be disabled if a username or password is not provided.
-- [] A user should see the author of the post next to the post listing.
-- [] The description for the posts should be visible on the post detail page.
+- [x] A user should see some content on the about us page.
+- [x] A user should be able to navigate to a contact us page.
+- [x] The login/register button should be disabled if a username or password is not provided.
+- [x] A user should see the author of the post next to the post listing.
+- [x] The description for the posts should be visible on the post detail page.
 - [] A user should be able to delete their posts from the post detail page.
 - [] After a user deletes their posts, they should be navigated back to the / page.
 - [] A user should be able to navigate to a **most expensive post** page which shows the post with the highest price.

@@ -5,10 +5,11 @@ import CreatePost from './CreatePost';
 import Posts from './Posts';
 import Post from './Post';
 import AboutUs from './AboutUs';
-
+import ContactUs from './ContactUs';
+import MostExpensivePost from './MostExpensivePost';
 
 import { useNavigate, useParams, Link, Routes, Route } from 'react-router-dom';
-import ContactUs from './ContactUs';
+
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -58,6 +59,13 @@ function App() {
     navigate(`/posts/${post._id}`);
   };
 
+  const deletePost = async(post)=> {
+    await api.deletePost(post);
+    setPosts(posts.filter(item => item._id !== post._id));
+    navigate(`/`);
+  };
+
+  const mostExpensivePost = MostExpensivePost(posts);
 
   return (
     <>
@@ -72,6 +80,7 @@ function App() {
             <Link to='/posts/create'>Create A Post</Link>
             <Link to='/about_us'>About Us</Link>
             <Link to='/contact_us'>Contact Us</Link>
+            <Link to='/most_expensive_post'>Most Expensive Post</Link>
             <Routes>
               <Route path='/posts/create' element={ <CreatePost createPost={ createPost } />} />
             </Routes>
@@ -81,14 +90,16 @@ function App() {
             <AuthForm submit={ register } txt='Register'/>
             <AuthForm submit={ login } txt='Login'/>
             <Link to='/about_us'>About Us</Link>
+            
           </>
         )
       }
       <Posts posts={ posts } auth={ auth }/>
       <Routes>
-        <Route path='/posts/:id' element={ <Post posts={ posts } auth={ auth }/>} />
+        <Route path='/posts/:id' element={ <Post posts={ posts } auth={ auth } deletePost={ deletePost }/>} />
         <Route path='/about_us' element={ <AboutUs />} />
         <Route path='/contact_us' element={ <ContactUs /> } />
+        <Route path='/most_expensive_post' element={ <MostExpensivePost mostExpensivePost={ mostExpensivePost }/>} />
       </Routes>
     </>
   )

@@ -58,13 +58,13 @@ const createPost = async(post)=> {
 const deletePost = async(post)=> {
   const token = window.localStorage.getItem('token');
   const response = await axios.delete(
-    `${BASE_URL}/posts/${ post._id }`,
+    `${BASE_URL}/posts/${post._id}`,
     {
       headers: {
         authorization: `Bearer ${ token }`
       }
     }
-  );
+  ); 
   return response;
 };
 
@@ -84,8 +84,8 @@ const api = {
   login,
   loginWithToken,
   fetchPosts,
-  createPost
-
+  createPost,
+  deletePost
 };
 
 export default api;

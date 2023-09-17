@@ -6,7 +6,7 @@ const CreatePost = ({ createPost })=> {
   const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
-
+  
   const submit = async(ev)=> {
     ev.preventDefault();
     try {

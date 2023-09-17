@@ -60,12 +60,10 @@ function App() {
   };
 
   const deletePost = async(post)=> {
-    await api.deletePost(post);
+    post = await api.deletePost(post);
     setPosts(posts.filter(item => item._id !== post._id));
     navigate(`/`);
   };
-
-  const mostExpensivePost = MostExpensivePost(posts);
 
   return (
     <>
@@ -80,7 +78,7 @@ function App() {
             <Link to='/posts/create'>Create A Post</Link>
             <Link to='/about_us'>About Us</Link>
             <Link to='/contact_us'>Contact Us</Link>
-            <Link to='/most_expensive_post'>Most Expensive Post</Link>
+            <Link to='/expensive'>Most Expensive Post</Link>
             <Routes>
               <Route path='/posts/create' element={ <CreatePost createPost={ createPost } />} />
             </Routes>
@@ -96,10 +94,10 @@ function App() {
       }
       <Posts posts={ posts } auth={ auth }/>
       <Routes>
-        <Route path='/posts/:id' element={ <Post posts={ posts } auth={ auth } deletePost={ deletePost }/>} />
+        <Route path='/posts/:id' element={ <Post posts={ posts } auth={ auth } deletePost={ deletePost } />} />
         <Route path='/about_us' element={ <AboutUs />} />
         <Route path='/contact_us' element={ <ContactUs /> } />
-        <Route path='/most_expensive_post' element={ <MostExpensivePost mostExpensivePost={ mostExpensivePost }/>} />
+        <Route path='/expensive' element={ <MostExpensivePost posts={ posts } />} />
       </Routes>
     </>
   )

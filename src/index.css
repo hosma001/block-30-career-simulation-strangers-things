@@ -10,3 +10,7 @@ form > * {
 .mine {
   font-weight: bold;
 }
+
+@media (max-width: 400px) {
+  
+}

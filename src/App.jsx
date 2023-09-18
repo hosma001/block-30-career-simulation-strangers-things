@@ -23,7 +23,7 @@ function App() {
       setPosts(posts);
     };
     fetchPosts();
-  }, []);
+  }, []); // I believe the dependency array should be updated with posts for edit.
 
   useEffect(()=> {
     const attemptLogin = async()=> {
@@ -60,10 +60,12 @@ function App() {
   };
 
   const deletePost = async(post)=> {
-    post = await api.deletePost(post);
+    await api.deletePost(post);
     setPosts(posts.filter(item => item._id !== post._id));
     navigate(`/`);
   };
+
+  const userPostCount = posts.filter(post => auth._id === post.author._id).length;
 
   return (
     <>
@@ -72,7 +74,7 @@ function App() {
         auth.username ? (
           <div>
             <h1>
-              Welcome { auth.username }
+              Welcome { auth.username } ({ userPostCount })
               <button onClick={ logout }>Logout</button>
             </h1>
             <Link to='/posts/create'>Create A Post</Link>

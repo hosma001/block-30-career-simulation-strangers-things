@@ -13,7 +13,7 @@ const Post = ({ posts, auth, deletePost })=> {
       <h1>{ post.title }</h1>
       <p>Description: { post.description }</p>
       <p>Location: { post.location }</p>
-      { auth._id === post.author._id ? <button onClick={ deletePost }>x</button>: ''}
+      { auth._id === post.author._id ? <button onClick={ ()=> {deletePost(post)} }>x</button>: ''}
     </div>
   );
 };
